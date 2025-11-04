@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档目录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .tree-container {
+            padding: 20px;
+        }
+
+        .tree {
+            list-style: none;
+        }
+
+        .folder-item, .file-item {
+            margin: 4px 0;
+        }
+
+        .folder-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+            user-select: none;
+        }
+
+        .folder-header:hover {
+            background-color: #f0f0f0;
+        }
+
+        .folder-icon, .file-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .folder-name {
+            flex: 1;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .toggle-icon {
+            font-size: 12px;
+            transition: transform 0.2s;
+            color: #666;
+        }
+
+        .folder-content {
+            list-style: none;
+            margin-left: 20px;
+            border-left: 2px solid #e0e0e0;
+            padding-left: 16px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .folder-content.expanded {
+            max-height: 2000px;
+        }
+
+        .folder-header.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+        }
+
+        .file-link {
+            color: #0066cc;
+            text-decoration: none;
+            flex: 1;
+            padding: 4px 0;
+            border-radius: 4px;
+            transition: color 0.2s;
+        }
+
+        .file-link:hover {
+            color: #0052a3;
+            text-decoration: underline;
+        }
+
+        .stats {
+            padding: 16px 20px;
+            border-top: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 文档目录</h1>
+            <p>点击文件夹展开/收起，点击文件名访问文档</p>
+        </div>
+
+        <div class="tree-container">
+            <ul class="tree">
+            <li class="folder-item">
+                <div class="folder-header" onclick="toggleFolder('folder_671957903684122659_0')">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">hpc</span>
+                    <span class="toggle-icon">▶</span>
+                </div>
+                <ul class="folder-content" id="folder_671957903684122659_0">
+                    
+            <li class="file-item">
+                <span class="file-icon">📄</span>
+                <a href="hpc/1. Start from Numpy.html" class="file-link">1. Start from Numpy.html</a>
+            </li>
+            
+                </ul>
+            </li>
+            </ul>
+        </div>
+
+        <div class="stats">
+            共找到 1 个HTML文件
+        </div>
+    </div>
+
+    <script>
+        function toggleFolder(folderId) {
+            const folder = document.getElementById(folderId);
+            const header = folder.previousElementSibling;
+
+            if (folder.classList.contains('expanded')) {
+                folder.classList.remove('expanded');
+                header.classList.remove('expanded');
+            } else {
+                folder.classList.add('expanded');
+                header.classList.add('expanded');
+            }
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('文档目录已加载');
+        });
+    </script>
+</body>
+</html>
